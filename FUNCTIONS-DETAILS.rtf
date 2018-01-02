@@ -1,0 +1,189 @@
+{\rtf1\ansi\ansicpg1252\cocoartf1504\cocoasubrtf830
+{\fonttbl\f0\fswiss\fcharset0 Helvetica;\f1\fmodern\fcharset0 Courier;\f2\froman\fcharset0 Times-Roman;
+}
+{\colortbl;\red255\green255\blue255;\red0\green0\blue0;}
+{\*\expandedcolortbl;;\cssrgb\c0\c0\c0;}
+\paperw11900\paperh16840\margl1440\margr1440\vieww15360\viewh11060\viewkind0
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural\partightenfactor0
+
+\f0\fs24 \cf0 ## Ma\'eflis Amico - KU Leuven - mailis.amico@kuleuven.be\
+## (last update : January 2, 2018) \
+## Amico, M., Van Keilegom, I. And Legrand, C. (2017). The single-index/Cox mixture cure model. \
+\
+\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\
+
+\b\fs28 NZD (from np package - 
+\b0\fs24 https://cran.r-project.org/web/packages/np/index.html
+\b\fs28 )
+\b0\fs24 \
+\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\
+\
+\pard\pardeftab720\sl288\slmult1\partightenfactor0
+\cf0 \expnd0\expndtw0\kerning0
+NZD stands for \'92no zero divide\'92. This function is used to deal with division by zero when using fixed precision architectures. This accomplishes the fact using a simple algorithm from computer science (in the underlying C code). It avoids NaN (not a number) in computations.\
+\
+Fed a vector/scalar, it checks for a negative/positive value and, if positive divides by the smallest positive floating-point number \'91x\'92 such that  1 + x != 1, if negative returns the same with appropriate sign.
+\f1\fs20 \
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural\partightenfactor0
+
+\f0\fs24 \cf0 \kerning1\expnd0\expndtw0 \
+\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\
+
+\b\fs28 smsurv (from smcure package - 
+\b0\fs24 https://cran.r-project.org/web/packages/smcure/index.html
+\b\fs28 )
+\b0\fs24 \
+\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\
+\
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\sl336\slmult1\pardirnatural\partightenfactor0
+
+\b \cf0 Description :
+\b0 \
+\pard\pardeftab720\sl336\slmult1\partightenfactor0
+\cf2 \expnd0\expndtw0\kerning0
+The estimated baseline survival function based on the Breslow method, which is used in order to update the E-step in the EM algorithm. \
+\
+
+\b Usage : 
+\b0 \
+ smsurv(Time, Status, X, beta, w, model)\
+\
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\sl336\slmult1\pardirnatural\partightenfactor0
+
+\b \cf0 \kerning1\expnd0\expndtw0 Arguments :
+\b0 \
+\pard\pardeftab720\sl336\slmult1\partightenfactor0
+\cf2 \expnd0\expndtw0\kerning0
+Time :  follow up time for "ph" model. If model is "aft", then this is residual logt\uc0\u8722 \u946 x. \
+Status:  censoring indicator, 1=event of interest happens, and 0=censoring \
+X :  effects of covariates of uncured patients \
+beta :  initial beta from coxph \
+w :  conditional probability of the ith individual remains uncured at the mth iteration. We use Status as initial value \
+model :  specifies your model, it can be "ph" or "aft" 
+\f2 \
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural\partightenfactor0
+
+\f0 \cf0 \kerning1\expnd0\expndtw0 \
+\
+\
+\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural\partightenfactor0
+
+\b\fs28 \cf0 SIC function\
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural\partightenfactor0
+
+\b0\fs24 \cf0 \'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97
+\b\fs28 \
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural\partightenfactor0
+\cf0 \
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\sl288\slmult1\pardirnatural\partightenfactor0
+
+\fs24 \cf0 Description:\
+
+\b0 EM algorithm for the estimation of a single-index/Cox mixture cure model.\
+\
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\sl336\slmult1\pardirnatural\partightenfactor0
+
+\b \cf0 Usage : 
+\fs28 \
+
+\b0\fs24 SIC(Time, Status, gamma.init, beta.init, X, Z, LCMM, eps, emmax, dataset, rescale)\
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural\partightenfactor0
+\cf0 \
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\sl336\slmult1\pardirnatural\partightenfactor0
+
+\b \cf0 Arguments :
+\b0 \
+Time : folow-up time\
+Status : censoring indicator - \cf2 \expnd0\expndtw0\kerning0
+ 1 = event of interest happens, and 0 = censoring\cf0 \kerning1\expnd0\expndtw0 \
+beta.init : initial value for the single-index model (incidence)\
+gamma.init : initial value for the Cox PH model (latency)\
+X : covariates considered in the single-index (incidence)\
+Z : covariates considered in the Cox PH model (latency)\
+LCMM : a smcure object (see smcure package - https://cran.r-project.org/web/packages/smcure/index.html - for more details about the secure function)\
+eps : value of the convergence criterion\
+emmax : maximum number of iteration for the EM algorithm\
+dataset : a matrix or a data.frame containing the data on which the model has to be estimated\
+rescale : TRUE/FALSE - if TRUE, parameters of the incidence are rescaled according to an euclidian norm equal to 1\
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural\partightenfactor0
+\cf0 \
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\sl336\slmult1\pardirnatural\partightenfactor0
+
+\b \cf0 Value :\
+
+\b0 b : parameter estimates for the single-index (incidence)\
+h : bandwidth value\
+beta : parameter estimates for the Cox PH model (latency)\
+iteration : number of iteration of the EM algorithm\
+survival : baseline conditional survival function estimate\
+cured : value of the weight W at the final iteration\
+pred : estimated value of \\gamma^tX and p(X)\
+h.conv : value given by the Value \'91convergence\'92 of the optim function for the bandwidth computation \
+conv: value given by the Value \'91convergence\'92 of the optim function for the maximum likelihood\
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural\partightenfactor0
+\cf0 \
+\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\
+
+\b\fs28 SICMM function\
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural\partightenfactor0
+
+\b0\fs24 \cf0 \'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97
+\b\fs28 \
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural\partightenfactor0
+
+\b0\fs24 \cf0 \
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\sl288\slmult1\pardirnatural\partightenfactor0
+
+\b \cf0 Description : \
+
+\b0 Estimation of a single-index/Cox mixture cure model with computation of the standard errors of the parameters by bootstrap.\
+\
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\sl336\slmult1\pardirnatural\partightenfactor0
+
+\b \cf0 Usage : 
+\b0 \
+SICMM(Time, Status, X, Z, LCMM, eps, emmax, dataset, rescale, bootstrap, nboot)
+\b \
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural\partightenfactor0
+
+\b0 \cf0 \
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\sl288\slmult1\pardirnatural\partightenfactor0
+
+\b \cf0 Arguments : 
+\b0 \
+Time : follow-up time\
+Delta : censoring indicator - \cf2 \expnd0\expndtw0\kerning0
+ 1 = event of interest happens, and 0 = censoring\cf0 \kerning1\expnd0\expndtw0 \
+X : covariates considered in the single-index (incidence)\
+Z : covariates considered in the Cox PH model (latency)\
+LCMM : a smcure object (see smcure package - https://cran.r-project.org/web/packages/smcure/index.html - for more details about the secure function)\
+eps : value of the convergence criterion\
+emmax : maximum number of iteration for the EM algorithm\
+dataset : a matrix or a data.frame containing the data on which the model has to be estimated\
+rescale : TRUE/FALSE - if TRUE, parameters of the incidence are rescaled according to an euclidian norm equal to 1\
+bootstrap : TRUE/FALSE - if TRUE, computation of the standard errors of the parameters based on a bootstrap approach\
+nboot : number of bootstrap sampling\
+\
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\sl336\slmult1\pardirnatural\partightenfactor0
+
+\b \cf0 Value : \
+
+\b0 b : parameter estimates for the single-index (incidence)\
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\sl336\slmult1\pardirnatural\partightenfactor0
+\cf0 b.se : standard errors for vector of parameters b\
+b.pvalue : p-value for the Wald test for the vector of parameters b\
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\sl336\slmult1\pardirnatural\partightenfactor0
+\cf0 h : bandwidth value\
+beta : parameter estimates for the Cox PH model (latency)\
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\sl336\slmult1\pardirnatural\partightenfactor0
+\cf0 beta.se : standard errors for vector of parameters beta\
+beta.pvalue : p-value for the Wald test for the vector of parameters beta\
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\sl336\slmult1\pardirnatural\partightenfactor0
+\cf0 survival : baseline conditional survival function estimate\
+pred : estimated value of the \\gamma^tX and p(X)\
+h.conv : value given by the Value \'91convergence\'92 of the optim function for the bandwidth computation \
+conv : value given by the Value \'91convergence\'92 of the optim function for the maximum likelihood\
+\
+\
+}

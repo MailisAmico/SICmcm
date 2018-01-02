@@ -1,4 +1,4 @@
-# SICmm
+# The Single-Index/Cox (SIC) mixture cure model
 
 This repository contains R codes associated with the article : 
 

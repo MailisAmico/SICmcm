@@ -14,13 +14,13 @@ Fed a vector/scalar, it checks for a negative/positive value and, if positive di
 smsurv (from smcure package - https://cran.r-project.org/web/packages/smcure/index.html)
 --------------------------------------------------------------
 
-<b>Description :</b>
+Description :
 The estimated baseline survival function based on the Breslow method, which is used in order to update the E-step in the EM algorithm. 
 
-<b>Usage : </b>
+Usage :
  smsurv(Time, Status, X, beta, w, model)
 
-<b>Arguments :</b>
+<b>Arguments :
 Time :  follow up time for "ph" model. If model is "aft", then this is residual logt−βx. 
 
 Status:  censoring indicator, 1=event of interest happens, and 0=censoring 

@@ -33,6 +33,7 @@ smsurv <-
 
 
 # SIC : EM algorithm to estimate the single-index/Cox mixture cure model
+# CAUTION : This code requires the packages np
 SIC <- 
   function(Time,Status,gamma.init,beta.init,X,Z,LCMM,eps,emmax,dataset,rescale){ 
   # Init values

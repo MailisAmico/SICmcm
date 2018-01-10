@@ -1,5 +1,5 @@
 ## Maïlis Amico - KU Leuven - mailis.amico@kuleuven.be
-## (last update : January 4, 2018) 
+## (last update : January 10, 2018) 
 ## The single-index/Cox mixture cure model codes
 
 # No Zero Denominator, used in C code for kernel estimation... (from 'np' package : https://cran.r-project.org/web/packages/np/index.html)
@@ -156,10 +156,15 @@ SIC <-
   # Predictions
   index <- index
   p_X <- p_X}
-  print("EM algorithm is done.")
-    
-  return(list(b=gamma.new,h=h.new,beta=beta.hat,iteration=iteration,survival=s,uncured=w,pred=cbind(index,p_X),h.conv=h.CV$convergence,conv=incidence_est$convergence)) 
   
+  print("EM algorithm is done.")
+  
+  if(difference<eps) convergence <-1 else convergence <- 0
+  
+  if(convergence==1){
+    return(list(b=gamma.new,h=h.new,beta=beta.hat,iteration=iteration,survival=s,uncured=w,pred=cbind(index,p_X),h.conv=h.CV$convergence,conv=incidence_est$convergence,convergence=convergence)) 
+  }else{print("Algorithm failed to converge")
+    return(list(convergence=convergence))}
 }
 
 
@@ -182,9 +187,11 @@ SICMM <-
     beta_boot <- matrix(rep(0,nboot*(nbeta)),nrow=nboot)
     iter <- matrix(rep(0,nboot),ncol=1)
     tempdata <- cbind(Time,Status,X,Z)
-    inb <- 1
-    while(inb <= nboot){
-      set.seed(inb)
+    
+    inb <- 0
+    ir <- 1
+    while(inb < nboot){
+      set.seed(ir)
       id <- sample(1:n,n,replace=TRUE) # resampling from dataset
       bootdata <- tempdata[id,] 
       bootX <- bootdata[,gammanm] # covariates for the incidence
@@ -192,11 +199,13 @@ SICMM <-
       
       bootdata <- data.frame(bootdata[,1],bootdata[,2],bootX,bootZ)
       bootfit <- SIC(Time=bootdata[,1],Status=bootdata[,2],gamma.init=gamma.init,beta.init=beta.init,X=bootX,Z=bootZ,LCMM,eps,emmax,bootdata,rescale)
-      gamma_boot[inb,] <- bootfit$b
-      beta_boot[inb,] <- bootfit$beta
-      
-      print(paste("bootstrap sampling number :",inb))
-      inb <- inb+1
+      if(bootfit$convergence==1){
+        inb <- inb+1
+        print(paste("bootstrap sampling number :",inb))
+        gamma_boot[inb,] <- bootfit$b
+        beta_boot[inb,] <- bootfit$beta
+              }
+      ir <- ir+1
     }
     gamma_se <- sqrt(apply(gamma_boot,2,var))
     gamma_zvalue <- SIC.model$b/gamma_se

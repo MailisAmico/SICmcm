@@ -1,4 +1,5 @@
 ## Maïlis Amico - KU Leuven - mailis.amico@kuleuven.be
+# R version 3.4.3 used to develop all codes
 ## (last update : January 4, 2018) 
 ## The single-index/Cox mixture cure model examples
 

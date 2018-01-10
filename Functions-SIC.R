@@ -1,14 +1,15 @@
 ## Maïlis Amico - KU Leuven - mailis.amico@kuleuven.be
+# R version 3.4.3 used to develop all codes
 ## (last update : January 10, 2018) 
 ## The single-index/Cox mixture cure model codes
 
-# No Zero Denominator, used in C code for kernel estimation... (from 'np' package : https://cran.r-project.org/web/packages/np/index.html)
+# No Zero Denominator, used in C code for kernel estimation... (from 'np' package : https://CRAN.R-project.org/package=np)
 NZD <- function(a) {
   sapply(1:NROW(a), function(i) {if(a[i] < 0) min(-.Machine$double.eps,a[i]) else max(.Machine$double.eps,a[i])})
 }
 
 
-# smsurv : Estimation of the baseline conditional survival function (from 'smcure' package : https://cran.r-project.org/web/packages/smcure/index.html)
+# smsurv : Estimation of the baseline conditional survival function (from 'smcure' package : https://CRAN.R-project.org/package=smcure)
 smsurv <-
   function(Time,Status,X,beta,w){    
     death_point <- sort(unique(subset(Time, Status==1)))
